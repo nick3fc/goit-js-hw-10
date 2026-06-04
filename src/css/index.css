@@ -32,7 +32,9 @@ body {
   gap: 24px;
 }
 .input-wrapper {
-  width: 355px;
+  width: 356px;
+  /* border: 1px solid #808080; */
+  border-radius: 4px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
 }
 .input-wrapper input {
@@ -137,17 +139,20 @@ body {
   line-height: 1.5;
   letter-spacing: 0.04em;
   color: #2e2f42;
-
+  border-radius: 4px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
 }
 .form fieldset {
   display: flex;
-  width: 360px;
+  width: 356px;
+  border: 1px solid #808080;
+  border-radius: 4px;
   /* flex-direction: column; */
   gap: 8px;
 }
 .form fieldset > label {
   display: flex;
+
   /* flex-direction: column; */
   gap: 8px;
 }
