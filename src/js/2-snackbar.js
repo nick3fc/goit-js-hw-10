@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // console.log('форма відправлена');
     event.preventDefault();
 
-    const formDelay = formSubmit.elements.delay.value;
+    const formDelay = Number(formSubmit.elements.delay.value);
     const formState = formSubmit.elements.state.value;
 
     formSubmit.reset();
@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // console.log('обробка проміса');
     submittedPromise
       .then(value => {
-        // showResolveAlert.message = `Fulfilled promise in ${formDelay}ms`;
         iziToast.show({
           balloon: true,
           closeOnEscape: true,
@@ -49,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       })
       .catch(error => {
-        // showRejectAlert.message = `Rejected promise in ${formDelay}ms`;
         iziToast.show({
           balloon: true,
           closeOnEscape: true,
