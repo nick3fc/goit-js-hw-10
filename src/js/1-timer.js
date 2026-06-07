@@ -24,16 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
   StartBtn.disabled = true;
   //   console.log('кнопка вимкнена');
 
+  // обробник кліку на кнопку старту зворотнього відліку
   StartBtn.addEventListener('click', () => {
     console.log('запуск зворотнього відліку');
     // currentDateTime = new Date();
     timeDifference = calcTimeDifference(selectedDateTime[0]);
-
     //   const timeDifference = selectedDateTime[0] - currentDateTime;
     //   console.log(timeDifference);
     StartBtn.disabled = true;
     dateInput.disabled = true;
-
+    // перерахунок та оновлення каунтера кожну секунду;
     let intervalID = setInterval(() => {
       //   calcTimeDifference(selectedDateTime[0]);
       let remainingTime = calcTimeDifference(selectedDateTime[0]);
@@ -84,7 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
           'Обрані дата і час менші за поточні. Виберіть дату і час у майбутньому.'
         );
         // alert('Please choose a date in the future')
-
         iziToast.show({
           balloon: true,
 
@@ -101,13 +100,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   console.log('flatpickr готовий');
 });
-
+// -------------- функції --------------
+// функція обраховує різницю між вибраною датою та поточною датою в мілісекундах
 function calcTimeDifference(selectedTime) {
   //   currentTime = new Date();
   //   timeDifference = selectedTime - currentTime;
   //   console.log('timeDifference: ', selectedTime - new Date());
   return selectedTime - new Date();
 }
+// функція конвертує мілісекунди в об'єкт з днями, годинами, хвилинами та секундами
 function convertMs(ms) {
   const second = 1000;
   const minute = second * 60;
@@ -127,6 +128,7 @@ function convertMs(ms) {
     seconds,
   };
 }
+// функція оновлює вміст каунтера в html відповідно до обрахованого часу
 function updateCounter({ days, hours, minutes, seconds }) {
   // function updateCounter({ days, hours, minutes, seconds, miliseconds }) {
   daysUpd.textContent = addPad(days);
@@ -136,7 +138,7 @@ function updateCounter({ days, hours, minutes, seconds }) {
   secondsUpd.textContent = addPad(seconds);
   // milisecondsUpd.textContent = addPad(miliseconds);
 }
-
+// функція приводить числові значення до формату з двома розрядами
 function addPad(padValue) {
   return padValue.toString().padStart(2, '0');
 }
