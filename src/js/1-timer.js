@@ -49,6 +49,16 @@ document.addEventListener('DOMContentLoaded', () => {
         dateInput.disabled = false;
       }
     }, 1000);
+    iziToast.show({
+      balloon: true,
+      closeOnEscape: true,
+      closeOnClick: true,
+      backgroundColor: 'green',
+      theme: 'light', // dark
+      position: 'topRight',
+      title: 'Finished:',
+      message: 'choose a new date to strt new countdown',
+    });
   });
 
   flatpickr('#datetime-picker', {
