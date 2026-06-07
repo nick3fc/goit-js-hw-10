@@ -2,29 +2,6 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-let formDelay = 0;
-// Resolve alert presettings for iziToast alert
-const showResolveAlert = {
-  balloon: true,
-  closeOnEscape: true,
-  closeOnClick: true,
-  backgroundColor: 'green',
-  theme: 'light', // dark
-  position: 'topRight',
-  title: '✅',
-  message: `Fulfilled promise in ${formDelay}ms`,
-};
-// Reject alert presettings for iziToast alert
-const showRejectAlert = {
-  balloon: true,
-  closeOnEscape: true,
-  closeOnClick: true,
-  backgroundColor: 'red',
-  theme: 'light', // dark
-  position: 'topRight',
-  title: '❌',
-  message: `Rejected promise in ${formDelay}ms`,
-};
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM готовий');
 
@@ -34,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // console.log('форма відправлена');
     event.preventDefault();
 
-    formDelay = formSubmit.elements.delay.value;
+    const formDelay = formSubmit.elements.delay.value;
     const formState = formSubmit.elements.state.value;
 
     formSubmit.reset();
@@ -59,12 +36,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // console.log('обробка проміса');
     submittedPromise
       .then(value => {
-        showResolveAlert.message = `Fulfilled promise in ${formDelay}ms`;
-        iziToast.show(showResolveAlert);
+        // showResolveAlert.message = `Fulfilled promise in ${formDelay}ms`;
+        iziToast.show({
+          balloon: true,
+          closeOnEscape: true,
+          closeOnClick: true,
+          backgroundColor: 'green',
+          theme: 'light', // dark
+          position: 'topRight',
+          title: '✅',
+          message: `Fulfilled promise in ${value}ms`,
+        });
       })
       .catch(error => {
-        showRejectAlert.message = `Rejected promise in ${formDelay}ms`;
-        iziToast.show(showRejectAlert);
+        // showRejectAlert.message = `Rejected promise in ${formDelay}ms`;
+        iziToast.show({
+          balloon: true,
+          closeOnEscape: true,
+          closeOnClick: true,
+          backgroundColor: 'red',
+          theme: 'light', // dark
+          position: 'topRight',
+          title: '❌',
+          message: `Rejected promise in ${error}ms`,
+        });
       });
   });
 });
